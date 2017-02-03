@@ -12,7 +12,7 @@ var app = express()
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/lostandfound', function (err) {
   if (err) throw err
-  console.log('connected')
+  console.log('database connected using mongoose')
 })
 
 // view engine setup

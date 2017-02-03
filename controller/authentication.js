@@ -25,13 +25,14 @@ module.exports = {
   },
 
   signIn: function (req, res, next) {
-    User.find({username: req.body.username}, function (err, user) {
+    User.findOne({username: req.body.username}, function (err, user) {
       if (err) throw err
       if (!user) {
         res.send('user not found')
       }
-      if (hash.verify(req.body.password, user.password) == true) {
-        var token = jwt.sign(user.dataValues, config.secret, { expiresIn: 60 * 60 })
+      var hasil = hash.verify(req.body.password, user.password)
+      if (hasil) {
+        var token = jwt.sign({username: user.username}, config.secret, { expiresIn: 60 * 60 })
         res.json({
           token: token
         })

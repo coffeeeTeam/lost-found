@@ -8,7 +8,8 @@ router.get('/', function (req, res) {
   res.send('please sign in use /signin')
 })
 
-router.get('/api/users', authController.verifyToken, authController.findAll)
+// melihat daftar user
+router.get('/users', authController.verifyToken, authController.findAll)
 
 router.post('/signin', authController.signIn)
 

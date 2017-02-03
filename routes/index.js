@@ -1,7 +1,14 @@
-var express = require('express')
-var router = express.Router()
-var itemController = require('../controller/item')
-var authController = require('../controller/authentication')
+const express = require('express')
+const router = express.Router()
+const itemController = require('../controller/item')
+const authController = require('../controller/authentication')
+const customerController = require('../controller/customer')
+
+/* customer */
+router.post('/customer', customerController.createCustomerInfo)
+router.put('/customer', customerController.updateCustomerInfo)
+router.get('/customer', customerController.getCustomerInfo)
+router.delete('/customer', customerController.deleteCustomer)
 
 // melihat daftar user
 router.get('/users', authController.verifyToken, authController.findAll)

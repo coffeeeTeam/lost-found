@@ -1,7 +1,6 @@
 var express = require('express')
 var router = express.Router()
 var itemController = require('../controller/item')
-
 var authController = require('../controller/authentication')
 
 // melihat daftar user
@@ -11,9 +10,7 @@ router.post('/signin', authController.signIn)
 
 router.post('/signup', authController.signUp)
 
-
 // melihat daftar barang yang hilang
-router.get('/list', itemController.getAllData)
-
+router.get('/list', authController.verifyToken , itemController.getAllData)
 
 module.exports = router

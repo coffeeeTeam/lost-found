@@ -5,5 +5,9 @@ modules.export = {
     model.Item.findall().then(function (result) {
       res.send({result: result})
     })
-  }
+  },
+
+// createData: function (req, res) {
+//   model.Item
+// }
 }

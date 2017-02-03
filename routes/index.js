@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
+var itemController = require('../controller/item')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+var authController = require('../controller/authentication')
 
-module.exports = router;
+// melihat daftar user
+router.get('/users', authController.verifyToken, authController.findAll)
+
+router.post('/signin', authController.signIn)
+
+router.post('/signup', authController.signUp)
+
+
+// melihat daftar barang yang hilang
+router.get('/list', itemController.getAllData)
+
+
+module.exports = router

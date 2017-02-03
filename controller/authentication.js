@@ -1,9 +1,7 @@
-var User = require('../models/user.js')
-var hash = require('password-hash')
-var jwt = require('jsonwebtoken')
-var express = require('express')
-var router = express.Router()
-var config = require('../config/config.json')
+const User = require('../models/user.js')
+const hash = require('password-hash')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config.json')
 
 module.exports = {
   findAll: function (req, res, next) {

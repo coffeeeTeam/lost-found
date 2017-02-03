@@ -13,6 +13,6 @@ var itemSchema = new Schema({
     timestamp: true
   })
 
-var Item = mongoose.model('Item', userSchema)
+var Item = mongoose.model('Item', itemSchema)
 
 module.exports = Item

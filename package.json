@@ -19,6 +19,7 @@
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
     "password-hash": "^1.2.2",
+    "sendgrid": "^4.7.1",
     "serve-favicon": "~2.3.0"
   }
 }

@@ -12,6 +12,6 @@ var customerSchema = new Schema({
     timestamp: true
   })
 
-var Customer = mongoose.model('Customer', userSchema)
+var Customer = mongoose.model('Customer', customerSchema)
 
 module.exports = Customer

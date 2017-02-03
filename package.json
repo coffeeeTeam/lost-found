@@ -1,26 +1,20 @@
 {
   "name": "lostandfound",
-  "version": "1.0.0",
-  "description": "Simple App that help Hotel to manage Lost and found",
-  "main": "index.js",
-  "dependencies": {
-    "express": "^4.14.1"
-  },
-  "devDependencies": {},
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/coffeeeTeam/lost-found.git"
-  },
-  "keywords": [
-    "lost&found"
-  ],
-  "author": "coffeeeTeam",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/coffeeeTeam/lost-found/issues"
-  },
-  "homepage": "https://github.com/coffeeeTeam/lost-found#readme"
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4",
+    "jsonwebtoken": "^7.2.1",
+    "mailgun-js": "^0.8.1",
+    "morgan": "~1.7.0",
+    "password-hash": "^1.2.2",
+    "serve-favicon": "~2.3.0"
+  }
 }

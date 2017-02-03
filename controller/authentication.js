@@ -1,7 +1,6 @@
 const User = require('../models/user.js')
 const hash = require('password-hash')
 const jwt = require('jsonwebtoken')
-const config = require('../config/config.json')
 
 module.exports = {
   findAll: function (req, res, next) {
@@ -30,7 +29,7 @@ module.exports = {
       }
       var hasil = hash.verify(req.body.password, user.password)
       if (hasil) {
-        var token = jwt.sign({username: user.username}, config.secret, { expiresIn: 60 * 60 })
+        var token = jwt.sign({username: user.username}, process.env.SECRET, { expiresIn: 60 * 60 })
         res.json({
           token: token
         })
@@ -40,7 +39,7 @@ module.exports = {
     })
   },
   verifyToken: function (req, res, next) {
-    var decode = jwt.verify(req.header('token'), config.secret)
+    var decode = jwt.verify(req.header('token'), process.env.SECRET)
 
     if (decode) {
       next()

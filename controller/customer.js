@@ -1,5 +1,7 @@
 const Customer = require('../models/customer')
 const Item = require('../models/item')
+const jwt = require('jsonwebtoken')
+
 module.exports = {
   createCustomerInfo: function (req, res, next) {
     var customerInfo = new Customer({
@@ -37,7 +39,7 @@ module.exports = {
       })
   },
   confirmation: function (req, res) {
-    var decode = jwt.verify(req.query.token, config.secret)
+    var decode = jwt.verify(req.query.token, process.env.SECRET)
     if (decode.nomorkamar == req.body.nomorkamar && decode.tanggal == req.body.tanggal) {
       Item.find({
         where: {

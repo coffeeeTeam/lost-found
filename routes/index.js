@@ -20,9 +20,12 @@ router.post('/signin', authController.signIn)
 
 router.post('/signup', authController.signUp)
 
-// melihat daftar barang yang hilang
-// router.get('/list', authController.verifyToken, itemController.getAllData)
-//
-router.get('/confirmation', customerController.confirmation)
+// item
+router.get('/list', authController.verifyToken, itemController.getAllData)
+
+router.post('/item', authController.verifyToken, itemController.createData)
+
+// confirmation customer
+router.post('/confirmation', customerController.confirmation)
 
 module.exports = router

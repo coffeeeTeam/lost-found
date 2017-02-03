@@ -1,12 +1,8 @@
 var express = require('express')
 var router = express.Router()
-var authController = require('../controller/authentication.js')
+var itemController = require('../controller/item')
 
-/* GET home page. */
-
-router.get('/', function (req, res) {
-  res.send('please sign in use /signin')
-})
+var authController = require('../controller/authentication')
 
 // melihat daftar user
 router.get('/users', authController.verifyToken, authController.findAll)
@@ -14,5 +10,10 @@ router.get('/users', authController.verifyToken, authController.findAll)
 router.post('/signin', authController.signIn)
 
 router.post('/signup', authController.signUp)
+
+
+// melihat daftar barang yang hilang
+router.get('/list', itemController.getAllData)
+
 
 module.exports = router

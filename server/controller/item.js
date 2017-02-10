@@ -7,7 +7,7 @@ const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
 module.exports = {
   getAllData: function (req, res) {
     Item.find().then(function (result) {
-      res.send({result})
+      res.send(result)
     })
   },
 

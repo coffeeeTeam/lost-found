@@ -5,6 +5,7 @@ var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var passport = require('passport');
+var cors = require('cors')
 
 require('dotenv').config()
 
@@ -21,7 +22,7 @@ mongoose.connect('mongodb://localhost/lostandfound', function (err) {
 // ====== Passport ======
 
 app.use(passport.initialize())
-
+app.use(cors())
 require('./config/passport')(passport)
 
 // ======= END =======

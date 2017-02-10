@@ -10,16 +10,19 @@
     <div class="container">
       <div class="form-style-8">
         <h2>Form Found</h2>
-        <form>
-          <input type="text" name="field1" placeholder="Item" />
-          <input type="text" name="field3" placeholder="Room" />
-          <input type="date" name="field4" placeholder="Date" />
-          <input type="text" name="field2" placeholder="Description" />
-          <input type="file" name="field5"><br><br>          
-          <input type="button" value="Submit" />
+        <form action="http://localhost:3000/upload" method="POST" enctype="multipart/form-data">
+          <input type="text" name="namabarang" id="namabarang" placeholder="Item" />
+          <input type="text" name="nomorkamar" id="nomorkamar" placeholder="Room" />
+          <input type="date" name="tanggal" id="tanggal" placeholder="Date" />
+          <input type="file" name="file"><br><br>
+          <button type="submit" name="button">submit</button>
 
         </form>
       </div>
     </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="javascript/index.js">
+
+  </script>
 </html>

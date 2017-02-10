@@ -55,13 +55,13 @@
           <div class="container">
             <div class="form-style-8">
               <h2>Form Customer</h2>
-              <form>
-                <input type="text" name="field1" placeholder="Full Name" />
-                <input type="email" name="field2" placeholder="Email" />
-                <input type="text" name="field3" placeholder="Room" />
-                <input type="date" name="field4" placeholder="Date" />
-                <input type="button" value="Submit" />
-              </form>
+              <form name='form-login' method="POST">
+                <input type="text" id="nama" placeholder="Full Name" />
+                <input type="email" id="email" placeholder="Email" />
+                <input type="text" id="nomorkamar" placeholder="Room" />
+                <input type="date" id="tanggal" placeholder="Date" />
+                <input onclick="createCustomer()" type="button" value="Submit" />
+              </form>         
             </div>
           </div>
           <!-- <h1>isi data</h1> -->
@@ -85,7 +85,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+
     <script src="js/custom.js"></script>
   </body>
 </html>

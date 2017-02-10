@@ -1,3 +1,10 @@
+function getUrlVars () {
+  var vars = [], hash
+  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')
+  var token = hashes.join('').split('=')
+  return token[1]
+}
+
 function ready () {
   $.ajax({
     type: 'GET',
@@ -36,3 +43,46 @@ function ready () {
 $(document).ready(function () {
   ready()
 })
+
+function createCustomer () {
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:3000/customer',
+    data: {
+      nama: $('#nama').val(),
+      email: $('#email').val(),
+      nomorkamar: $('#nomorkamar').val(),
+      tanggal: $('#tanggal').val()
+    },
+    success: function (data) {
+      window.location.href = 'http://127.0.0.1:8080/client/home.html'
+    },
+    error: function (err) {
+      console.log(err)
+    }
+  })
+}
+
+function confirmation () {
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:3000/confirmation',
+    data: {
+      token: getUrlVars(),
+      nomorkamar: $('#nomorkamar').val(),
+      tanggal: $('#tanggal').val()
+    },
+    success: function (data) {
+      if (data == 'yes') {
+        alert('Barang ini milik anda')
+      }else {
+        alert('Barang ini bukan milik anda')
+      }
+
+      window.location.href = 'http://127.0.0.1:8080/client/home.html'
+    },
+    error: function (err) {
+      console.log(err)
+    }
+  })
+}

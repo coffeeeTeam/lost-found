@@ -8,18 +8,18 @@ const passport = require('passport')
 const multer = require('multer')
 
 /* customer */
-router.post('/customer', authController.verifyToken, customerController.createCustomerInfo)
+router.post('/customer', customerController.createCustomerInfo)
 
-router.put('/customer', authController.verifyToken, customerController.updateCustomerInfo)
+router.put('/customer', customerController.updateCustomerInfo)
 
 // authController.verifyToken,
 
 router.get('/customer', customerController.getCustomerInfo)
 
-router.delete('/customer', authController.verifyToken, customerController.deleteCustomer)
+router.delete('/customer', customerController.deleteCustomer)
 
 // melihat daftar user
-router.get('/users', authController.verifyToken, authController.findAll)
+router.get('/users', authController.findAll)
 
 router.post('/signin', authController.signIn)
 
@@ -29,12 +29,11 @@ router.post('/signup', authController.signUp)
 // item
 router.get('/list', itemController.getAllData)
 
-router.post('/item', authController.verifyToken, itemController.createData)
+// confirmation
 
-// confirmation customer
 router.post('/confirmation', customerController.confirmation)
 
-// login facebook
+// confirmation customer via login facebook
 router.get('/auth/facebook/login', passport.authenticate('facebook', {scope: ['email']}))
 
 router.use('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/auth/login/success', failureRedirect: '/auth/login/failed' }))
@@ -44,7 +43,7 @@ router.get('/auth/login/failed', function (req, res) {
 })
 
 router.get('/auth/login/success', function (req, res) {
-  res.send('home')
+  res.redirect('http://127.0.0.1:8080/client/confirmation.html')
 })
 
 var storage = multer.diskStorage({
@@ -60,6 +59,8 @@ var upload = multer({
   storage: storage
 })
 
-router.post('/upload', upload.any(), uploadController.upload)
+router.post('/item', upload.any(), itemController.createData)
+
+// router.post('/upload', upload.any(), uploadController.upload)
 
 module.exports = router

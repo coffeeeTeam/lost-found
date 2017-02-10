@@ -3,6 +3,7 @@ const Customer = require('../models/customer')
 const jwt = require('jsonwebtoken')
 const helper = require('sendgrid').mail
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
+const multer = require('multer')
 
 module.exports = {
   getAllData: function (req, res) {
@@ -12,9 +13,10 @@ module.exports = {
   },
 
   createData: function (req, res) {
+    var imageName = req.files[0].originalname
     Item.create({
       namabarang: req.body.namabarang,
-      photobarang: req.body.foto,
+      photobarang: imageName,
       nomorkamar: req.body.nomorkamar,
       tanggal: req.body.tanggal,
       status: 0
@@ -23,45 +25,42 @@ module.exports = {
       Customer.findOne({
         tanggal: req.body.tanggal,
         nomorkamar: req.body.nomorkamar
-      })
-        .then(function (result) {
-          console.log('..................')
+      }).then(function (result) {
+        console.log(result.email)
+        console.log(result.nomorkamar)
+        console.log(result.tanggal)
+        console.log(result.email)
 
-          const token = jwt.sign({
-            email: result.email,
-            nomorkamar: result.nomorkamar,
-            tanggal: result.tanggal
-          }, process.env.SECRET, { expiresIn: '1d' })
+        const token = jwt.sign({
+          email: result.email,
+          nomorkamar: result.nomorkamar,
+          tanggal: result.tanggal
+        }, process.env.SECRET, { expiresIn: '1d' })
 
-          console.log(result.email)
-          console.log(result.nomorkamar)
-          console.log(result.tanggal)
-          console.log(result.email)
+        let link = '127.0.0.1:8080/client/confirmation.html'
 
-          let link = 'localhost:3000/confirmation?token='
+        var from_email = new helper.Email('coffeteam@gmail.com')
+        var to_email = new helper.Email(result.email) // email pengunjung hotel
+        var item = req.body.namabarang // masukkan item yang hilang di sini
+        var subject = 'Notifikasi Lost&Found'
+        var isiEmail = `Kami dari Lostandfound telah menemukan sebuah barang ${item} berdasarkan informasi house-keeping kami, untuk konfirmasi silahkan klik <a href='http://${link}?token=${token}'>link berikut ini</a>.`
 
-          var from_email = new helper.Email('coffeteam@gmail.com')
-          var to_email = new helper.Email(result.email) // email pengunjung hotel
-          var item = req.body.namabarang // masukkan item yang hilang di sini
-          var subject = 'Notifikasi Lost&Found'
-          var isiEmail = `Kami dari Lostandfound telah menemukan sebuah barang ${item} berdasarkan informasi house-keeping kami, untuk konfirmasi silahkan klik <a href='http://${link}${token}'>link berikut ini</a>.`
+        var content = new helper.Content('text/html', isiEmail)
+        var mail = new helper.Mail(from_email, subject, to_email, content)
 
-          var content = new helper.Content('text/html', isiEmail)
-          var mail = new helper.Mail(from_email, subject, to_email, content)
-
-          var request = sg.emptyRequest({
-            method: 'POST',
-            path: '/v3/mail/send',
-            body: mail.toJSON()
-          })
-
-          sg.API(request, function (error, response) {
-            console.log(response.statusCode)
-            console.log(response.body)
-            console.log(response.headers)
-          })
+        var request = sg.emptyRequest({
+          method: 'POST',
+          path: '/v3/mail/send',
+          body: mail.toJSON()
         })
-      res.send({hasil: datahasil})
+
+        sg.API(request, function (error, response) {
+          console.log(response.statusCode)
+          console.log(response.body)
+          console.log(response.headers)
+        })
+      })
+      res.redirect('http://127.0.0.1:8080/client/home.html')
     })
   }
 }

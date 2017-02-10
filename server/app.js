@@ -4,6 +4,7 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+var passport = require('passport')
 var cors = require('cors')
 
 require('dotenv').config()
@@ -17,6 +18,14 @@ mongoose.connect('mongodb://localhost/lostandfound', function (err) {
   if (err) throw err
   console.log('database connected using mongoose')
 })
+
+// ====== Passport ======
+
+app.use(passport.initialize())
+app.use(cors())
+require('./config/passport')(passport)
+
+// ======= END =======
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))

@@ -39,7 +39,7 @@ module.exports = {
       })
   },
   confirmation: function (req, res) {
-    var decode = jwt.verify(req.query.token, process.env.SECRET)
+    var decode = jwt.verify(req.body.token, process.env.SECRET)
     if (decode.nomorkamar == req.body.nomorkamar && decode.tanggal == req.body.tanggal) {
       Item.find({
         where: {
@@ -51,13 +51,9 @@ module.exports = {
         })
       })
 
-      res.send({
-        message: 'berdasarkan data yang anda yang masukan, kami yakin ini barang anda !! Terima kasih telah menggunakan fasilitas kami'
-      })
+      res.send('yes')
     }else {
-      res.send({
-        message: 'berdasarkan data yang anda yang masukan, Kami yakin ini bukan barang anda !! Terima kasih telah menggunakan fasilitas kami'
-      })
+      res.send('no')
     }
   }
 

@@ -5,34 +5,37 @@ const authController = require('../controller/authentication')
 const customerController = require('../controller/customer')
 const uploadController = require('../controller/upload')
 const passport = require('passport')
-const multer = require('multer');
+
+const multer = require('multer')
 
 
 /* customer */
-router.post('/customer', authController.verifyToken, customerController.createCustomerInfo)
+router.post('/customer', customerController.createCustomerInfo)
 
-router.put('/customer', authController.verifyToken, customerController.updateCustomerInfo)
+router.put('/customer', customerController.updateCustomerInfo)
 
-router.get('/customer', authController.verifyToken, customerController.getCustomerInfo)
+// authController.verifyToken,
 
-router.delete('/customer', authController.verifyToken, customerController.deleteCustomer)
+router.get('/customer', customerController.getCustomerInfo)
+
+router.delete('/customer', customerController.deleteCustomer)
 
 // melihat daftar user
-router.get('/users', authController.verifyToken, authController.findAll)
+router.get('/users', authController.findAll)
 
 router.post('/signin', authController.signIn)
 
 router.post('/signup', authController.signUp)
 
+// ,authController.verifyToken
 // item
-router.get('/list', authController.verifyToken, itemController.getAllData)
+router.get('/list', itemController.getAllData)
 
-router.post('/item', authController.verifyToken, itemController.createData)
+// confirmation
 
-// confirmation customer
 router.post('/confirmation', customerController.confirmation)
 
-// login facebook
+
 router.get('/auth/facebook/login', passport.authenticate('facebook', {scope: ['email']}))
 
 router.use('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/auth/login/success', failureRedirect: '/auth/login/failed' }))
@@ -42,22 +45,25 @@ router.get('/auth/login/failed', function (req, res) {
 })
 
 router.get('/auth/login/success', function (req, res) {
-  res.send('home')
+
+  res.redirect('http://127.0.0.1:8080/client/confirmation.html')
 })
 
 var storage = multer.diskStorage({
- destination: function(req, file, cb) {
- cb(null, 'public/images')
- },
- filename: function(req, file, cb) {
- cb(null, file.originalname);
- }
-});
+  destination: function (req, file, cb) {
+    cb(null, 'public/images')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
 
 var upload = multer({
- storage: storage
-});
+  storage: storage
+})
 
-router.post('/upload', upload.any(),uploadController.upload)
+router.post('/item', upload.any(), itemController.createData)
+
+
 
 module.exports = router

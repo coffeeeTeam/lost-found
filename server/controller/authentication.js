@@ -22,19 +22,20 @@ module.exports = {
   },
 
   signIn: function (req, res, next) {
-    User.findOne({username: req.body.username}, function (err, user) {
+    User.findOne({username: req.body.user}, function (err, user) {
       if (err) throw err
       if (!user) {
-        res.send('user not found')
+        res.redirect('http://127.0.0.1:8080/client/index.html')
       }
-      var hasil = hash.verify(req.body.password, user.password)
+      var hasil = hash.verify(req.body.pass, user.password)
       if (hasil) {
-        var token = jwt.sign({username: user.username}, process.env.SECRET, { expiresIn: 60 * 60 })
-        res.json({
-          token: token
-        })
+        // var token = jwt.sign({username: user.username}, process.env.SECRET, { expiresIn: 60 * 60 })
+        // res.json({
+        //   token: token
+        // })
+        res.redirect('http://127.0.0.1:8080/client/home.html')
       } else {
-        res.send('wrong password')
+        res.redirect('http://127.0.0.1:8080/client/index.html')
       }
     })
   },

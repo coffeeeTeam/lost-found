@@ -13,10 +13,8 @@ module.exports = {
       username: req.body.username,
       password: hash.generate(req.body.password)
     })
-
     newUser.save(function (err) {
       if (err) throw err
-
       res.send(`${req.body.username} has been created`)
     })
   },

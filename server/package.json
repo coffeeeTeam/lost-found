@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "body-parser": "~1.15.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.1",
     "debug": "~2.2.0",

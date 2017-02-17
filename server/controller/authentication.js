@@ -11,7 +11,8 @@ module.exports = {
   signUp: function (req, res, next) {
     var newUser = User({
       username: req.body.username,
-      password: hash.generate(req.body.password)
+      password: hash.generate(req.body.password),
+      hotel: req.body.hotel
     })
     newUser.save(function (err) {
       if (err) throw err

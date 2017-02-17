@@ -29,7 +29,25 @@ describe('TESTING - INPUT CUSTOMER', function () {
         hotel: 'Kartika Chandra'
       })
       .end(function (err, res) {
-        expect(res.body.data).to.be.an('object')
+        expect(res.text).to.be.an('string')
+        done()
+      })
+  })
+
+  it('RESULT - Find All item by HOTEL name ', function (done) {
+    chai.request(app)
+      .get('list/kartika')
+      .end(function (err, res) {
+        expect(res.body).to.be.an('array')
+        done()
+      })
+  })
+
+  it('RESULT - Find All item by customer side ', function (done) {
+    chai.request(app)
+      .get('list')
+      .end(function (err, res) {
+        expect(res.body).to.be.an('array')
         done()
       })
   })

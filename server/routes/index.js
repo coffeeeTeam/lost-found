@@ -62,6 +62,7 @@ var upload = multer({
 })
 
 router.post('/item', upload.any(), itemController.createData)
+router.post('/item/:id/claim', itemController.claim)
 
 // router.post('/upload', upload.any(), uploadController.upload)
 

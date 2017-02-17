@@ -14,9 +14,12 @@ function ready () {
           </div>
            <div class="ten wide column">
             <p class="ui header" style="color:#0073e6;">${item.namabarang}</p>
+            <p>Hotel: ${item.namahotel}</p>
             <p><b>Deskripsi</b></p>
             <p>${item.description}</p>
-
+            <button class="ui primary button">
+              Konfirmasi
+            </button>
            </div>
          </div>`
         $('#mainwrapper').append(table)

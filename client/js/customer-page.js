@@ -14,6 +14,7 @@ function ready () {
           </div>
            <div class="ten wide column">
             <p class="ui header" style="color:#0073e6;">${item.namabarang}</p>
+            <p>Hotel: ${item.namahotel}</p>
             <p><b>Deskripsi</b></p>
             <p>${item.description}</p>
             <p style="color:gray;">Untuk mengkalim barang silahkan login melalui facebook</p>

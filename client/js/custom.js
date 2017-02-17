@@ -40,10 +40,6 @@ function ready () {
   })
 }
 
-$(document).ready(function () {
-  ready()
-})
-
 function createCustomer () {
   $.ajax({
     type: 'POST',
@@ -55,7 +51,7 @@ function createCustomer () {
       tanggal: $('#tanggal').val()
     },
     success: function (data) {
-      window.location.href = 'http://127.0.0.1:8080/client/home.html'
+      window.location.href = 'http://127.0.0.1:8080/home.html'
     },
     error: function (err) {
       console.log(err)
@@ -79,10 +75,36 @@ function confirmation () {
         alert('Barang ini bukan milik anda')
       }
 
-      window.location.href = 'http://127.0.0.1:8080/client/home.html'
+      window.location.href = 'http://127.0.0.1:8080/home.html'
     },
     error: function (err) {
       console.log(err)
     }
   })
 }
+
+function signIn () {
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:3000/signin',
+    data: {
+      username: $('#username').val(),
+      password: $('#password').val()
+    },
+    success: function (data) {
+      if (data.token) {
+        localStorage.setItem('token', data)
+        window.location.href = 'http://127.0.0.1:8080/home.html'
+      }else {
+        alert('Login failed')
+      }
+    },
+    error: function (err) {
+      console.log(err)
+    }
+  })
+}
+
+$(document).ready(function () {
+  ready()
+})

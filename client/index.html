@@ -18,16 +18,17 @@
     <div id="login">
       <form action="http://localhost:3000/signin" name='form-login' method="POST">
         <span class="fontawesome-user"></span>
-          <input type="text" id="user" name="user" placeholder="Username">
+          <input type="text" id="username" name="username" placeholder="Username">
 
         <span class="fontawesome-lock"></span>
-          <input type="password" id"pass" name="pass" placeholder="Password">
+          <input type="password" id="password" name="password" placeholder="Password">
 
-        <input type="submit" value="Login">
+        <input type="button" value="Login" onclick="signIn()">
 
 </form>
 
 
 </body>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/custom.js"></script>
 </html>

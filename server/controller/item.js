@@ -12,6 +12,13 @@ module.exports = {
     })
   },
 
+  getAllDataByHotel: function (req, res) {
+    let hotelname = req.params.hotel
+    Item.find({hotel: hotelname}).then(function (result) {
+      res.json(result)
+    })
+  },
+
   createData: function (req, res) {
     var imageName = req.files[0].originalname
     Item.create({

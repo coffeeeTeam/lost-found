@@ -29,6 +29,8 @@ router.post('/signup', authController.signUp)
 // item
 router.get('/list', itemController.getAllData)
 
+router.get('/list/:hotel', itemController.getAllDataByHotel)
+
 // confirmation
 
 router.post('/confirmation', customerController.confirmation)

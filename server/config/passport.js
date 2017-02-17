@@ -2,7 +2,6 @@
 
 let FacebookStrategy = require('passport-facebook').Strategy
 let configAuth = require('./auth.js')
-
 let Confirmation = require('../models/confirmation')
 
 module.exports = function (passport) {
@@ -19,7 +18,6 @@ module.exports = function (passport) {
     })
   })
 
-
   // =========================================================================
   // FACEBOOK ================================================================
   // =========================================================================
@@ -30,7 +28,6 @@ module.exports = function (passport) {
     callbackURL: configAuth.facebookAuth.callbackURL,
     profileFields: ['id', 'emails', 'name']
   },
-
     function (token, refreshToken, profile, done) {
       process.nextTick(function () {
         Confirmation.findOne({ 'facebook.id': profile.id }, function (err, user) {
@@ -52,4 +49,3 @@ module.exports = function (passport) {
     }
   ))
 }
-

@@ -3,15 +3,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var customerSchema = new Schema({
+  nama: String,
   email: String,
   nomorkamar: String,
-  tanggal: String,
-  facebook: {
-    id: String,
-    token: String,
-    email: String,
-    name: String
-  }
+  tanggal: String
 },
   {
     timestamp: true

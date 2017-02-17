@@ -5,9 +5,7 @@ const authController = require('../controller/authentication')
 const customerController = require('../controller/customer')
 const uploadController = require('../controller/upload')
 const passport = require('passport')
-
 const multer = require('multer')
-
 
 /* customer */
 router.post('/customer', customerController.createCustomerInfo)
@@ -35,7 +33,7 @@ router.get('/list', itemController.getAllData)
 
 router.post('/confirmation', customerController.confirmation)
 
-
+// confirmation customer via login facebook
 router.get('/auth/facebook/login', passport.authenticate('facebook', {scope: ['email']}))
 
 router.use('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/auth/login/success', failureRedirect: '/auth/login/failed' }))
@@ -45,7 +43,6 @@ router.get('/auth/login/failed', function (req, res) {
 })
 
 router.get('/auth/login/success', function (req, res) {
-
   res.redirect('http://127.0.0.1:8080/client/confirmation.html')
 })
 
@@ -64,6 +61,6 @@ var upload = multer({
 
 router.post('/item', upload.any(), itemController.createData)
 
-
+// router.post('/upload', upload.any(), uploadController.upload)
 
 module.exports = router

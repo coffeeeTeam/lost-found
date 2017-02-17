@@ -3,10 +3,8 @@
   <head>
     <link rel="stylesheet" type="text/css" href=https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.css>
     <meta charset="utf-8">
-    <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/customer-page.css">
+
     <title></title>
   </head>
   <body>
@@ -24,9 +22,10 @@
               <p style="font-size:30px">Lost<b>Found</b></p >
             </div>
             <div class="five wide column">
-              <div class="ui icon input">
-                <input type="text" placeholder="Search...">
+              <div class="ui action left icon input">
                 <i class="search icon"></i>
+                <input type="text" placeholder="Search...">
+                <div class="ui teal button">Search</div>
               </div>
             </div>
           </div>
@@ -34,7 +33,7 @@
         </div>
       </div>
     </div>
-
+    <div class="ui divider"></div>
     <div class="ui grid row">
       <div class="four wide column">
         <p></p>
@@ -42,42 +41,57 @@
         <p></p>
       </div>
       <div class="six wide column">
-
-
-
+        <div class="ui grid row stacked segment">
+          <div class="six wide column">
+            <img src="http://id-live-02.slatic.net/p/8/swiss-army-jam-tangan-pria-body-rose-gold-black-dial-brown-leather-strap-sa-3821-3668-7600215-6acf255eea235eacc540f9880f7e7ab4.jpg" alt="">
+          </div>
+           <div class="ten wide column">
+            <p class="ui header" style="color:#0073e6;">Jam Tangan</p>
+            <p><b>Deskripsi</b></p>
+            <p>I recently installed nodejs version 0.10.26 on ubuntu 64 bit. node -v and npm -v commands run fine and I can see the correct versions. When I do a $ sudo npm install -g express
+            the installation goes fine. But when I try to create a project with express as $ express myProject I get an error saying</p>
+            <button class="ui primary button">
+              Konfirmasi
+            </button>
+           </div>
+         </div>
       </div>
       <div class="three wide column container">
-        <h3>List hotels</h3>
+        <button class="ui facebook button">
+          <i class="facebook icon"></i>
+          Login with Facebook
+        </button>
+        <h3>Recommended Hotels</h3>
         <div class="ui grid row">
           <div class="two wide column">
-            <button class="mini ui green button">7</button>
+            <i class="hotel icon"></i>
           </div>
           <div class="fourteen wide column">
-            <p><a href="#">How to organize a node app that uses sequelize?</a></p>
+            <p><a href="#">	The Ritz-Carlton Jakarta </a></p>
           </div>
         </div>
         <div class="ui grid row">
           <div class="two wide column">
-            <button class="mini ui green button">9</button>
+            <i class="hotel icon"></i>
           </div>
           <div class="fourteen wide column">
-            <p><a href="#">Updating multiple records using sequelize and nodejs?</a></p>
+            <p><a href="#">Inter-Continental MidPlaza</a></p>
           </div>
         </div>
         <div class="ui grid row">
           <div class="two wide column">
-            <button class="mini ui green button">5</button>
+            <i class="hotel icon"></i>
           </div>
           <div class="fourteen wide column">
-            <p><a href="#">Sequelize create object with associations</a></p>
+            <p><a href="#">Borobudur Hotel </a></p>
           </div>
         </div>
         <div class="ui grid row">
           <div class="two wide column">
-            <button class="mini ui green button">3</button>
+            <i class="hotel icon"></i>
           </div>
           <div class="fourteen wide column">
-            <p><a href="#">Sequelize joining tables with multiple records with same foreign key</a></p>
+            <p><a href="#">The Aryaduta Suite Hotel Semanggi </a></p>
           </div>
         </div>
 
@@ -87,7 +101,12 @@
       </div>
     </div>
 
-
+    <div class="ui inverted segment">
+        ©LostFound2017
+    </div>
 
   </body>
+  <script type="text/javascript">
+  $('.ui.modal').modal('show');
+  </script>
 </html>

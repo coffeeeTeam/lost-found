@@ -1,6 +1,4 @@
-# Project Title
-
-#### Lost and Found
+# Lost and Found
 
 ## Descriptions
 
@@ -47,6 +45,6 @@ Lost and Found uses a number of open source projects to work properly:
 #### Develop by
 
 - [sanbastia](https://github.com/sanBastia)
-- [qblol](https://github.com/qblol)
-- [radityaarya](https://github.com/radityaarya)
+- [didietsuryadi](https://github.com/didietsuryadi)
+- [Tonichen](https://github.com/chrisantoni)
 - [axiomaswn](https://github.com/axiomaswn)

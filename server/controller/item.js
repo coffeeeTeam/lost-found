@@ -12,6 +12,32 @@ module.exports = {
     })
   },
 
+  getAllDataByHotel: function (req, res) {
+    let hotelname = req.params.hotel
+    Item.find({hotel: hotelname}).then(function (result) {
+      res.json(result)
+    })
+  },
+  claim: function (req, res) {
+    let itemid = req.params.id
+
+    let claim = {
+      tanggal: req.body.tanggal,
+      nomorkamar: req.body.nomorkamar
+    }
+
+    Item.findOne({ _id: itemid})
+      .then(function (data) {
+        if (data.nomorkamar === claim.nomorkamar && data.tanggal === claim.tanggal) {
+          res.send('MATCH')
+        }else {
+          res.send('not MATCH')
+        }
+      }).catch(function (err) {
+      res.send('No item found!')
+    })
+  },
+
   createData: function (req, res) {
     var imageName = req.files[0].originalname
     Item.create({
@@ -26,11 +52,6 @@ module.exports = {
         tanggal: req.body.tanggal,
         nomorkamar: req.body.nomorkamar
       }).then(function (result) {
-        console.log(result.email)
-        console.log(result.nomorkamar)
-        console.log(result.tanggal)
-        console.log(result.email)
-
         const token = jwt.sign({
           email: result.email,
           nomorkamar: result.nomorkamar,

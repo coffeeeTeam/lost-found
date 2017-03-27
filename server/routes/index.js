@@ -29,6 +29,8 @@ router.post('/signup', authController.signUp)
 // item
 router.get('/list', itemController.getAllData)
 
+router.get('/list/:hotel', itemController.getAllDataByHotel)
+
 // confirmation
 
 router.post('/confirmation', customerController.confirmation)
@@ -60,6 +62,7 @@ var upload = multer({
 })
 
 router.post('/item', upload.any(), itemController.createData)
+router.post('/item/:id/claim', itemController.claim)
 
 // router.post('/upload', upload.any(), uploadController.upload)
 

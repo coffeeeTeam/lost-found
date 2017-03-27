@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var itemSchema = new Schema({
+  hotel: String,
   namabarang: String,
   photobarang: String,
   nomorkamar: String,

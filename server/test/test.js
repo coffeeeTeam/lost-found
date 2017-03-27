@@ -19,7 +19,9 @@ describe('TESTING - INPUT CUSTOMER', function () {
         done()
       })
   })
+})
 
+describe('TESTING - INPUT ADMIN', function () {
   it('RESULT - create user/admin', function (done) {
     chai.request(app)
       .post('signup')
@@ -29,7 +31,42 @@ describe('TESTING - INPUT CUSTOMER', function () {
         hotel: 'Kartika Chandra'
       })
       .end(function (err, res) {
-        expect(res.body.data).to.be.an('object')
+        expect(res.text).to.be.an('string')
+        done()
+      })
+  })
+})
+
+describe('TESTING - FIND ALL ITEMS', function () {
+  it('RESULT - Find All item by HOTEL name ', function (done) {
+    chai.request(app)
+      .get('list/kartika')
+      .end(function (err, res) {
+        expect(res.body).to.be.an('array')
+        done()
+      })
+  })
+
+  it('RESULT - Find All item by customer side ', function (done) {
+    chai.request(app)
+      .get('list')
+      .end(function (err, res) {
+        expect(res.body).to.be.an('array')
+        done()
+      })
+  })
+})
+
+describe('TESTING - ITEM CLAIM', function () {
+  it('RESULT - Find All item by customer side ', function (done) {
+    chai.request(app)
+      .post('item/58a6b95f66e516139918d3ac/claim')
+      .send({
+        tanggal: '2017-01-13',
+        nomorkamar: 203
+      })
+      .end(function (err, res) {
+        expect(res.text).to.equal('MATCH')
         done()
       })
   })
